@@ -7,14 +7,14 @@ interface ICity {
   state: string
 }
 
-const bodyValidation = z.object({
+const bodySchema = z.object({
   name: z.string().min(3),
   state: z.string()
 })
 
 const create = async (req: Request<{}, {}, ICity>, res: any) => {
   try {
-    const { name, state } = await bodyValidation.parse(req.body)
+    const { name, state } = await bodySchema.parse(req.body)
 
     if (!name || !state) {
       return res.status(StatusCodes.BAD_REQUEST).json({
