@@ -1,4 +1,4 @@
-**Changes proposed in this pull request:**
+**Alterações propostas neste pull request:**
 
 - Change 1
 - Change 2

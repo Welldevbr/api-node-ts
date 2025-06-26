@@ -1,7 +1,7 @@
 import { Request, Response } from 'express'
 import { StatusCodes } from 'http-status-codes'
 
-async function signIn(req: any, res: any) {
+const signIn = (req: any, res: any) => {
   const { email, password } = req.body
 
   if (!email || !password) {
