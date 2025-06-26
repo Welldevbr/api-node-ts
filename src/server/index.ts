@@ -1,6 +1,7 @@
-import express from 'express'
 import 'dotenv/config.js'
+import './services/zod-error-map'
 
+import express from 'express'
 import { router } from './routes'
 
 const server = express()
