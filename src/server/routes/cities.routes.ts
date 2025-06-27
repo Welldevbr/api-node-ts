@@ -3,6 +3,10 @@ import { CitiesController } from '../controllers/cities'
 
 const router = Router()
 
-router.post('/cities', CitiesController.create)
+router.post(
+  '/cities',
+  CitiesController.createValidation,
+  CitiesController.create
+)
 
 export { router as citiesRoutes }

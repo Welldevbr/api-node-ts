@@ -1,5 +1,5 @@
 import 'dotenv/config.js'
-import './services/zod-error-map'
+import './services/zodErrorTranslator'
 
 import express from 'express'
 import { router } from './routes'

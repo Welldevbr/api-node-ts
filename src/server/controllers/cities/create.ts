@@ -1,6 +1,7 @@
-import { Request, Response } from 'express'
+import { Request } from 'express'
 import { StatusCodes } from 'http-status-codes'
 import { z } from 'zod'
+import { validation } from '../../middleware'
 
 interface ICity {
   name: string
@@ -9,46 +10,20 @@ interface ICity {
 
 const bodySchema = z.object({
   name: z.string().min(3),
-  state: z.string()
+  state: z.string().min(2).max(2)
 })
 
-const create = async (req: Request<{}, {}, ICity>, res: any) => {
-  try {
-    const { name, state } = await bodySchema.parse(req.body)
+export const createValidation = validation((getSchema) => ({
+  body: getSchema(bodySchema)
+}))
 
-    if (!name || !state) {
-      return res.status(StatusCodes.BAD_REQUEST).json({
-        success: false,
-        message: 'Nome e estado são obrigatórios'
-      })
-    }
+export const create = async (req: Request<{}, {}, ICity>, res: any) => {
+  const { name, state } = req.body
 
-    return res.status(StatusCodes.CREATED).json({
-      success: true,
-      message: 'Cidade criada com sucesso!',
-      city: { name, state }
-    })
-  } catch (error) {
-    const zodError = error as z.ZodError
-    const errors: Record<string, string> = {}
+  console.log({ nome: name, estado: state })
 
-    zodError.issues.map((issue) => {
-      if (!issue.path.join('.')) return
-
-      errors[issue.path.join('.')] = issue.message
-    })
-
-    if (!zodError || !zodError.issues) {
-      return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
-        success: false,
-        message: 'Erro interno do servidor'
-      })
-    }
-
-    return res.status(StatusCodes.BAD_REQUEST).json({
-      errors
-    })
-  }
+  return res.status(StatusCodes.CREATED).json({
+    success: true,
+    message: 'Cidade cadastrada com sucesso!'
+  })
 }
-
-export { create }
