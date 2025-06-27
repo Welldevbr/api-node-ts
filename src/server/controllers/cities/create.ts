@@ -1,23 +1,17 @@
-import { Request } from 'express'
+import { Request, Response } from 'express'
 import { StatusCodes } from 'http-status-codes'
-import { z } from 'zod'
+
 import { validation } from '../../middleware'
-
-interface ICity {
-  name: string
-  state: string
-}
-
-const bodySchema = z.object({
-  name: z.string().min(3),
-  state: z.string().min(2).max(2)
-})
+import { citySchema, ICity } from '../../schemas/cities.schema'
 
 export const createValidation = validation((getSchema) => ({
-  body: getSchema(bodySchema)
+  body: getSchema(citySchema)
 }))
 
-export const create = async (req: Request<{}, {}, ICity>, res: any) => {
+export const create = async (
+  req: Request<{}, {}, ICity>,
+  res: Response
+): Promise<any> => {
   const { name, state } = req.body
 
   console.log({ nome: name, estado: state })

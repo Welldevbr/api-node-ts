@@ -1,7 +1,7 @@
 import { Request, Response } from 'express'
 import { StatusCodes } from 'http-status-codes'
 
-const signIn = (req: any, res: any) => {
+export const signIn = (req: Request<{}, {}>, res: any) => {
   const { email, password } = req.body
 
   if (!email || !password) {
@@ -15,5 +15,3 @@ const signIn = (req: any, res: any) => {
     .status(StatusCodes.OK)
     .json({ success: true, message: 'Seja bem-vindo!' })
 }
-
-export { signIn }
