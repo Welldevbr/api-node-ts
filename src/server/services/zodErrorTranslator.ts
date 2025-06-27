@@ -2,8 +2,6 @@ import { z, ZodErrorMap, ZodIssueCode, ZodIssueOptionalMessage } from 'zod'
 
 const errorMessages: Partial<Record<ZodIssueCode, string>> = {
   invalid_type: 'Campo obrigatório ou tipo inválido',
-  too_small: 'Valor abaixo do mínimo permitido',
-  too_big: 'Valor acima do máximo permitido',
   invalid_string: 'Formato de texto inválido',
   invalid_enum_value: 'Valor inválido para o campo',
   unrecognized_keys: 'Chaves não reconhecidas no objeto',
