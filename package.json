@@ -14,7 +14,7 @@
     "build": "tsc",
     "postinstall": "tsc",
     "format": "prettier --write .",
-    "test": "jest --watch"
+    "test": "jest"
   },
   "dependencies": {
     "@types/jest": "^30.0.0",
