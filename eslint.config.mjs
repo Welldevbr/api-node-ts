@@ -12,7 +12,7 @@ export default defineConfig([
     rules: {
       'no-param-reassign': 'off',
       'no-unused-vars': ['error', { argsIgnorePattern: 'next' }],
-      'max-len': ['error', { code: 80 }],
+      'max-len': ['error', { code: 120 }],
       quotes: ['error', 'single'],
       camelcase: 'off',
       '@typescript-eslint/no-explicit-any': 'off',

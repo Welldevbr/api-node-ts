@@ -20,6 +20,10 @@
   ],
   "exclude": [
     "node_modules",
-    "dist"
+    "dist",
+    "coverage",
+    "tests",
+    "build",
+    "./jest.config.ts"
   ]
 }
