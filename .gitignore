@@ -1,5 +1,6 @@
 .env
 /node_modules
 /dist
+/covarage
 .DS_Store
 .vscode

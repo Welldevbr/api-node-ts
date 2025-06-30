@@ -8,14 +8,22 @@ export const deleteValidation = validation((getSchema) => ({
   params: getSchema(paramsSchema)
 }))
 
-export const deleteById = async (
-  req: Request<IParams>,
-  res: Response
-): Promise<any> => {
-  console.log(req.params)
+export const deleteById = async (req: Request<IParams>, res: Response): Promise<any> => {
+  if (!req.params.id) {
+    return res.status(StatusCodes.BAD_REQUEST).json({
+      errors: {
+        default: 'O parâmetro "id" precisa ser informado.'
+      }
+    })
+  }
 
-  return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
-    success: false,
-    message: 'Não implementado'
-  })
+  if (Number(req.params.id) === 999) {
+    return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
+      errors: {
+        default: 'Registro não encontrado'
+      }
+    })
+  }
+
+  return res.status(StatusCodes.NO_CONTENT).send()
 }

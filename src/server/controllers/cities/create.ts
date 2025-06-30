@@ -8,16 +8,14 @@ export const createValidation = validation((getSchema) => ({
   body: getSchema(citySchema)
 }))
 
-export const create = async (
-  req: Request<{}, {}, ICity>,
-  res: Response
-): Promise<any> => {
+export const create = async (req: Request<{}, {}, ICity>, res: Response): Promise<any> => {
   const { name, state } = req.body
 
   console.log({ nome: name, estado: state })
 
   return res.status(StatusCodes.CREATED).json({
     success: true,
-    message: 'Cidade cadastrada com sucesso!'
+    message: 'Cidade cadastrada com sucesso!',
+    id: 1
   })
 }
