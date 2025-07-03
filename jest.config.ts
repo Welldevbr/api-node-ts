@@ -11,7 +11,7 @@ const config: Config = {
   coverageDirectory: 'coverage',
   coverageProvider: 'v8',
   coverageReporters: ['json'],
-  setupFilesAfterEnv: ['./tests/jest.stup.ts'],
+  setupFilesAfterEnv: ['./tests/jest.stup.ts', './tests/singleton.ts'],
   testMatch: ['**/tests/**/*.test.ts', '**/?(*.)+(spec|test).?([mc])[jt]s?(x)'],
   transform: {
     '^.+\\.(ts|tsx)$': 'ts-jest'
