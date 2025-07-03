@@ -3,13 +3,10 @@ import { testServer } from '../jest.stup'
 
 describe('Cities - Create', () => {
   it('Test creating a new city', async () => {
-    const city = {
-      id: 1,
+    const res = await testServer.post('/v1/cities').send({
       name: 'Icó',
       state: 'CE'
-    }
-
-    const res = await testServer.post('/v1/cities').send()
+    })
 
     expect(res.statusCode).toEqual(StatusCodes.CREATED)
     expect(typeof res.body).toEqual('object')
