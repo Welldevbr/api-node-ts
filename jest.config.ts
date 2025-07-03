@@ -8,6 +8,7 @@ import type { Config } from 'jest'
 const config: Config = {
   clearMocks: true,
   collectCoverage: true,
+  preset: 'ts-jest',
   coverageDirectory: 'coverage',
   coverageProvider: 'v8',
   coverageReporters: ['json'],

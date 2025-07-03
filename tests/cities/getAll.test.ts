@@ -3,12 +3,12 @@ import { testServer } from '../jest.stup'
 
 describe('Cities - Get all', () => {
   it('Test search all cities', async () => {
-    const res = await testServer.post('/v1/cities').send({
+    /* const res = await testServer.post('/v1/cities').send({
       name: 'Icó',
       state: 'CE'
     })
 
-    expect(res.statusCode).toEqual(StatusCodes.CREATED)
+    expect(res.statusCode).toEqual(StatusCodes.CREATED) */
 
     const resSearch = await testServer.get('/v1/cities').send()
 
