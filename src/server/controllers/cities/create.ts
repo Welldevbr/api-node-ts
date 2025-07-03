@@ -3,19 +3,23 @@ import { StatusCodes } from 'http-status-codes'
 
 import { validation } from '../../middleware'
 import { citySchema, ICity } from '../../schemas/cities.schema'
+import { CitiesProvider } from '../../database/providers/cities'
 
 export const createValidation = validation((getSchema) => ({
   body: getSchema(citySchema)
 }))
 
 export const create = async (req: Request<{}, {}, ICity>, res: Response): Promise<any> => {
-  const { name, state } = req.body
+  const result = await CitiesProvider.create(req.body)
 
-  console.log({ nome: name, estado: state })
+  if (result instanceof Error)
+    return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
+      errors: { default: result.message }
+    })
 
   return res.status(StatusCodes.CREATED).json({
     success: true,
     message: 'Cidade cadastrada com sucesso!',
-    id: 1
+    data: result
   })
 }

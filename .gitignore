@@ -4,3 +4,6 @@
 /covarage
 .DS_Store
 .vscode
+/src/generated/prisma
+
+/src/generated/prisma

@@ -1,7 +1,7 @@
 import z from 'zod'
 
 export const citySchema = z.object({
-  name: z.string().min(3),
+  name: z.string().min(3).max(150),
   state: z.string().length(2)
 })
 

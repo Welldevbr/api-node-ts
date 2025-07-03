@@ -18,5 +18,5 @@ export const updateById = async (req: Request<IParams, {}, ICity>, res: Response
     })
   }
 
-  return res.status(StatusCodes.NO_CONTENT).send()
+  return res.status(StatusCodes.OK).send()
 }
