@@ -1,16 +1,23 @@
 import { StatusCodes } from 'http-status-codes'
 import { testServer } from '../jest.stup'
+import { prismaMock } from '../singleton'
 
 describe('Cities - Delete', () => {
   it('Test deleting a city', async () => {
-    /*  const res = await testServer.post('/v1/cities').send({
+    prismaMock.city.create.mockResolvedValue({
+      id: 1,
       name: 'Icó',
       state: 'CE'
-    }) */
+    })
 
-    // expect(res.statusCode).toEqual(StatusCodes.CREATED)
+    const res = await testServer.post('/v1/cities').send({
+      name: 'Icó',
+      state: 'CE'
+    })
 
-    const resDelete = await testServer.delete(`/v1/cities/${8}`).send()
+    expect(res.statusCode).toEqual(StatusCodes.CREATED)
+
+    const resDelete = await testServer.delete(`/v1/cities/${res?.body?.data?.id}`).send()
 
     expect(resDelete.statusCode).toEqual(StatusCodes.OK)
   })

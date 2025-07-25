@@ -15,4 +15,4 @@ type TGetAllSchemas = (getSchema: TGetSchema) => Partial<TAllSchemas>
 
 type TValidation = (getAllSchemas: TGetAllSchemas) => RequestHandler
 
-export { TProperty, TErrors, TReqData, TValidation }
+export type { TProperty, TErrors, TReqData, TValidation }
