@@ -3,6 +3,7 @@ import { StatusCodes } from 'http-status-codes'
 
 import { validation } from '../../middleware'
 import { IParams, ICity, paramsSchema, citySchema } from '../../schemas/cities.schema'
+import { CitiesProvider } from '../../database/providers/cities'
 
 export const updateValidation = validation((getSchema) => ({
   body: getSchema(citySchema),
@@ -10,13 +11,19 @@ export const updateValidation = validation((getSchema) => ({
 }))
 
 export const updateById = async (req: Request<IParams, {}, ICity>, res: Response): Promise<any> => {
-  if (Number(req.params.id) === 999) {
-    return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
-      errors: {
-        default: 'Registro não encontrado'
-      }
-    })
-  }
+  const result = await CitiesProvider.updateById({
+    id: Number(req.params.id),
+    city: req.body
+  })
 
-  return res.status(StatusCodes.OK).send()
+  if (result instanceof Error)
+    return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
+      errors: { default: result.message }
+    })
+
+  return res.status(StatusCodes.CREATED).json({
+    success: true,
+    message: 'Cidade atualizada com sucesso',
+    data: result
+  })
 }

@@ -2,7 +2,8 @@ import z from 'zod'
 
 export const citySchema = z.object({
   name: z.string().min(3).max(150),
-  state: z.string().length(2)
+  state: z.string().length(2),
+  id: z.coerce.number().int().min(1).optional()
 })
 
 export const querySchema = z.object({

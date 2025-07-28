@@ -3,7 +3,7 @@ import { StatusCodes } from 'http-status-codes'
 
 import { validation } from '../../middleware'
 import { paramsSchema, IParams } from '../../schemas/cities.schema'
-import prisma from '../../../prisma'
+import { CitiesProvider } from '../../database/providers/cities'
 
 export const deleteValidation = validation((getSchema) => ({
   params: getSchema(paramsSchema)
@@ -11,7 +11,6 @@ export const deleteValidation = validation((getSchema) => ({
 
 export const deleteById = async (req: Request<IParams>, res: Response): Promise<any> => {
   const cityId = req.params.id
-  const citiesIds = await prisma.city.findMany()
 
   if (!cityId) {
     return res.status(StatusCodes.BAD_REQUEST).json({
@@ -21,15 +20,15 @@ export const deleteById = async (req: Request<IParams>, res: Response): Promise<
     })
   }
 
-  if (!citiesIds.map((item) => item.id).includes(Number(cityId))) {
+  const result = await CitiesProvider.getById(Number(req.params.id))
+
+  if (result instanceof Error)
     return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
-      errors: {
-        default: 'Cidade não encontrado'
-      }
+      errors: { default: result.message }
     })
-  }
 
-  await prisma.city.delete({ where: { id: Number(cityId) } })
-
-  return res.status(StatusCodes.OK).json({ succes: true, message: 'Cidade excluida com sucesso!' })
+  return res.status(StatusCodes.CREATED).json({
+    success: true,
+    message: 'Cidade excluída com sucesso'
+  })
 }

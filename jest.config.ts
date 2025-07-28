@@ -13,7 +13,7 @@ const config: Config = {
   coverageProvider: 'babel',
   coverageReporters: ['json'],
   coveragePathIgnorePatterns: ['/node_modules/', '/generated/'],
-  setupFilesAfterEnv: ['./tests/jest.stup.ts', './tests/singleton.ts'],
+  setupFilesAfterEnv: ['./tests/jest.stup.ts', '<rootDir>/tests/singleton.ts'],
   testMatch: ['**/tests/**/*.test.ts', '**/?(*.)+(spec|test).?([mc])[jt]s?(x)'],
   transform: {
     '^.+\\.(ts|tsx)$': 'ts-jest'

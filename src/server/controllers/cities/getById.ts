@@ -3,23 +3,22 @@ import { StatusCodes } from 'http-status-codes'
 
 import { validation } from '../../middleware'
 import { paramsSchema, IParams } from '../../schemas/cities.schema'
+import { CitiesProvider } from '../../database/providers/cities'
 
 export const getByIdValidation = validation((getSchema) => ({
   params: getSchema(paramsSchema)
 }))
 
 export const getById = async (req: Request<IParams>, res: Response): Promise<any> => {
-  if (Number(req.params.id) === 999) {
-    return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
-      errors: {
-        default: 'Registro não encontrado'
-      }
-    })
-  }
+  const result = await CitiesProvider.getById(Number(req.params.id))
 
-  return res.status(StatusCodes.OK).json({
-    id: 1,
-    name: 'Icó',
-    state: 'CE'
+  if (result instanceof Error)
+    return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
+      errors: { default: result.message }
+    })
+
+  return res.status(StatusCodes.CREATED).json({
+    success: true,
+    data: result
   })
 }

@@ -1,9 +1,9 @@
 import supertest from 'supertest'
 import { server } from '../src/server'
-import { prismaMock } from './singleton'
+import prisma from '../src/prisma'
 
-jest.mock('../src/prisma', () => ({
-  prisma: prismaMock
-}))
+afterEach(async () => {
+  await prisma.city.deleteMany({ where: { name: 'Icó (Teste)' } })
+})
 
 export const testServer = supertest(server)

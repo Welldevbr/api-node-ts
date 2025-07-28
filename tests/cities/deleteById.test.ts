@@ -6,18 +6,18 @@ describe('Cities - Delete', () => {
   it('Test deleting a city', async () => {
     prismaMock.city.create.mockResolvedValue({
       id: 1,
-      name: 'Icó',
-      state: 'CE'
+      name: 'São Miguel',
+      state: 'RN'
     })
 
     const res = await testServer.post('/v1/cities').send({
-      name: 'Icó',
-      state: 'CE'
+      name: 'São Miguel',
+      state: 'RN'
     })
 
     expect(res.statusCode).toEqual(StatusCodes.CREATED)
 
-    const resDelete = await testServer.delete(`/v1/cities/${res?.body?.data?.id}`).send()
+    const resDelete = await testServer.delete(`/v1/cities/${res.body.data.id}`).send()
 
     expect(resDelete.statusCode).toEqual(StatusCodes.OK)
   })

@@ -6,12 +6,12 @@ describe('Cities - get by ID', () => {
   it('Test search a city by id', async () => {
     prismaMock.city.create.mockResolvedValue({
       id: 1,
-      name: 'Icó',
+      name: 'Icó (Teste)',
       state: 'CE'
     })
 
     const res = await testServer.post('/v1/cities').send({
-      name: 'Icó',
+      name: 'Icó (Teste)',
       state: 'CE'
     })
 
