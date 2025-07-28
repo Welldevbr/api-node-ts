@@ -10,8 +10,9 @@ const config: Config = {
   collectCoverage: true,
   preset: 'ts-jest',
   coverageDirectory: 'coverage',
-  coverageProvider: 'v8',
+  coverageProvider: 'babel',
   coverageReporters: ['json'],
+  coveragePathIgnorePatterns: ['/node_modules/', '/generated/'],
   setupFilesAfterEnv: ['./tests/jest.stup.ts', './tests/singleton.ts'],
   testMatch: ['**/tests/**/*.test.ts', '**/?(*.)+(spec|test).?([mc])[jt]s?(x)'],
   transform: {

@@ -3,14 +3,18 @@ import { testServer } from '../jest.stup'
 import { prismaMock } from '../singleton'
 
 describe('Cities - Create', () => {
-  const city = {
-    name: 'Icó',
-    state: 'CE'
-  }
-
   it('Test creating a new city', async () => {
-    prismaMock.city.create.mockResolvedValue({ ...city, id: 1 })
+    prismaMock.city.create.mockResolvedValue({
+      id: 1,
+      name: 'Icó',
+      state: 'CE'
+    })
 
-    await expect(testServer.post('/v1/cities').send(city)).resolves.toEqual(StatusCodes.CREATED)
+    const response = await testServer.post('/v1/cities').send({
+      name: 'Icó',
+      state: 'CE'
+    })
+
+    expect(response.statusCode).toEqual(StatusCodes.CREATED)
   })
 })
