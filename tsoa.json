@@ -1,0 +1,14 @@
+{
+  "entryFile": "src/server/index.ts",
+  "noImplicitAdditionalProperties": "throw-on-extras",
+  "controllerPathGlobs": [
+    "src/server/controllers/*.ts"
+  ],
+  "spec": {
+    "outputDirectory": "src/server/docs",
+    "specVersion": 3
+  },
+  "routes": {
+    "routesDir": "src/server/routes"
+  }
+}
