@@ -8,7 +8,10 @@ export const openApiDocument = createDocument({
     title: 'API Rest',
     version: '1.0.0'
   },
-  servers: [{ url: 'http://localhost:3000/v1' }],
+  servers: [
+    { description: 'Test URL', url: 'http://localhost:3000/v1' },
+    { description: 'Production URL', url: 'https://api-node-ts-tl9t.onrender.com/v1' }
+  ],
   paths: { ...authPaths, ...citiesPaths },
   components: {
     securitySchemes: {
