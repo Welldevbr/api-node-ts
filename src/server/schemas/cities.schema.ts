@@ -1,16 +1,16 @@
-import z from 'zod/v4'
+import z from 'zod'
 
 export const citySchema = z.object({
-  name: z.string().min(3).max(150).meta({ example: 'Cidade' }),
-  state: z.string().length(2).meta({ example: 'CE' })
+  name: z.string().min(3).max(150),
+  state: z.string().length(2)
 })
 
 const cityWithIdSchema = citySchema.extend({ id: z.coerce.number().int().min(1) })
 
 export const querySchema = z.object({
-  search: z.string().optional().meta({ example: '' }),
-  page: z.coerce.number().int().min(1).optional().meta({ example: 1 }),
-  per_page: z.coerce.number().int().min(1).optional().meta({ example: 10 })
+  search: z.string().optional(),
+  page: z.coerce.number().int().min(1).optional(),
+  per_page: z.coerce.number().int().min(1).optional()
 })
 
 export const paramsSchema = z.object({

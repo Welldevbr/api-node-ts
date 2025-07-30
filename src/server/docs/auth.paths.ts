@@ -1,5 +1,5 @@
 import z from 'zod/v4'
-import { signInSchema, signUpSchema } from '../schemas/auth.schema'
+import { signInDocsSchema, signUpDocsSchema } from '../schemas/auth.docs.schema'
 
 const success = z.object({
   success: z.boolean().meta({ example: true })
@@ -13,7 +13,7 @@ export const authPaths = {
       requestBody: {
         content: {
           'application/json': {
-            schema: signUpSchema
+            schema: signUpDocsSchema
           }
         }
       },
@@ -36,7 +36,7 @@ export const authPaths = {
       requestBody: {
         content: {
           'application/json': {
-            schema: signInSchema
+            schema: signInDocsSchema
           }
         }
       },

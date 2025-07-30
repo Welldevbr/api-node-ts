@@ -1,6 +1,5 @@
 import z from 'zod/v4'
-import { signUpSchema } from '../schemas/auth.schema'
-import { citySchema } from '../schemas/cities.schema'
+import { cityDocsSchema } from '../schemas/cities.docs.schema'
 
 export const citiesPaths = {
   '/cities': {
@@ -11,18 +10,13 @@ export const citiesPaths = {
       requestBody: {
         content: {
           'application/json': {
-            schema: citySchema
+            schema: cityDocsSchema
           }
         }
       },
       responses: {
         201: {
-          description: 'Cidade criada',
-          content: {
-            'application/json': {
-              schema: signUpSchema
-            }
-          }
+          description: 'Cidade criada'
         }
       }
     },
@@ -80,18 +74,13 @@ export const citiesPaths = {
       requestBody: {
         content: {
           'application/json': {
-            schema: citySchema
+            schema: cityDocsSchema
           }
         }
       },
       responses: {
         201: {
-          description: 'Cidade criada',
-          content: {
-            'application/json': {
-              schema: signUpSchema
-            }
-          }
+          description: 'Cidade criada'
         }
       }
     },
