@@ -1,7 +1,7 @@
 import * as signIn from './signIn'
 import * as signUp from './signUp'
 
-export const AuthController = {
-  ...signIn,
-  ...signUp
+export const AuthProvider = {
+  ...signUp,
+  ...signIn
 }
