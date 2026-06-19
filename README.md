@@ -10,6 +10,7 @@ Uma API REST robusta construída com **Node.js**, **TypeScript** e **Express**, 
 - ✅ **JWT** - Autenticação segura com JSON Web Tokens
 - ✅ **Bcrypt** - Hash seguro de senhas
 - ✅ **Zod** - Validação de schemas com tipos TypeScript
+- ✅ **Swagger/OpenAPI** - Documentação interativa da API
 - ✅ **ESLint & Prettier** - Code quality e formatação automática
 - ✅ **Node.js 20.x** - Versão LTS moderna
 
